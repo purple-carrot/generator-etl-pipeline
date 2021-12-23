@@ -11,5 +11,9 @@
   "lib": [
     "ES2018",
     "ESNext.AsyncIterable"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
   ]
 }

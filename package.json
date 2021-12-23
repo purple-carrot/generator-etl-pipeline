@@ -2,7 +2,7 @@
   "name": "generator-etl-pipeline",
   "version": "1.0.3",
   "description": "Library of generator functions with a main focus on ETL pipelines.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "npx mocha",
