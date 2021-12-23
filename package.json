@@ -1,6 +1,6 @@
 {
   "name": "generator-etl-pipeline",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Library of generator functions with a main focus on ETL pipelines.",
   "main": "index.js",
   "types": "dist/index.d.ts",
