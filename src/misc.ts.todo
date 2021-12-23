@@ -1,0 +1,69 @@
+export function before(func) {
+  return async function* before(g) {
+    await func()
+    yield* g
+  }
+}
+
+// Executes a callback when the generator completes.
+// Because a generator function can lose control after any yield
+// and never regain it, there is no guarantee that the loop will
+// ever complete. The try/finally gives the opportunity to get to
+// callback even if the consumer didn't fully consume the
+// generator
+export function after(func) {
+  return async function* after(g) {
+    try {
+      for await (const item of g) {
+        yield g
+      }
+    } finally {
+      await func()
+    }
+  }
+}
+
+// complete/consume the piped generator. Then, start yielding from the input one.
+export function then(nextG) {
+  return async function* then(g) {
+    await ignore(g)
+
+    yield* pipe(nextG).generator()
+  }
+}
+
+// Executes another generator/pipe while the input pipe is active.
+export function whileActive(otherG) {
+  return async function* whileIsActive(g) {
+    if (Array.isArray(otherG)) {
+      otherG = pipe(...otherG).generator()
+    } else if (otherG instanceof GeneratorPipeline) {
+      otherG = otherG.generator()
+    } else if (isGeneratorFunction) {
+      otherG = otherG()
+    }
+
+    let done = false
+
+    const get = next => {
+      next.then(value => {
+        done = value.done
+
+        if (!done) {
+          get(g.next())
+        }
+      })
+    }
+
+    get(g.next())
+
+    for await (const item of otherG) {
+      if (done) {
+        return
+      }
+
+      yield item
+    }
+  }
+}
+

@@ -1,0 +1,5 @@
+{
+  "spec": "src/test/**/*.test.ts",
+  "reporter": "list",
+  "require": "ts-node/register"
+}
