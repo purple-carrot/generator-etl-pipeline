@@ -8,7 +8,7 @@ export declare type Transformer<T, U> = (g: ForAwaitOf<T>) => AsyncGenerator<U>;
 export declare type Producer<T> = () => AsyncGenerator<T>;
 export declare type Consumer<T, U> = (g: ForAwaitOf<T>) => Promise<U>;
 export interface SleeperTransformer<T, U> extends Transformer<T, U> {
-    sleeper: (ms: number) => Promise<void>;
+    sleep: (ms: number) => Promise<void>;
 }
 export interface ResetableTransformer<T, U> extends Transformer<T, U> {
     reset: (startTime: number) => void;

@@ -1,2 +1,2 @@
-import { ForAwaitOf } from './types';
-export declare function last<T>(g: ForAwaitOf<T>): Promise<T>;
+import { Consumer } from './types';
+export declare function last<T>(): Consumer<T, T>;

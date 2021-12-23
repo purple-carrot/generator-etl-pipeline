@@ -4,14 +4,13 @@ exports.timestamp = void 0;
 const map_1 = require("./map");
 function timestamp(baseTime) {
     baseTime = baseTime == 'now' ? (new Date()).getTime() : (baseTime || 0);
-    let timestamp = map_1.map(d => ({
+    let result = map_1.map(d => ({
         value: d,
         timestamp: (new Date()).getTime() - baseTime
     }));
-    timestamp.reset = startTime => {
+    result.reset = startTime => {
         baseTime = startTime || (new Date()).getTime();
-        return timestamp;
     };
-    return timestamp;
+    return result;
 }
 exports.timestamp = timestamp;

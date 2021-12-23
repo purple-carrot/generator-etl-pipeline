@@ -7,7 +7,8 @@
   "scripts": {
     "test": "npx mocha",
     "test-watch": "npx mocha -w",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
