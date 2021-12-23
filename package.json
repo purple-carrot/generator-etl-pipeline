@@ -37,7 +37,6 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "@types/csv-parse": "^1.2.2",
     "csv-parse": "^4.10.1",
     "lodash": "^4.17.15",
     "moment": "^2.26.0"
